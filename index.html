@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ransomware Protection System</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ============================= -->
+    <!-- SIDEBAR -->
+    <!-- ============================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🛡️
+            </div>
+
+            <div>
+                <h1>RansomGuard</h1>
+                <span>Protection System</span>
+            </div>
+
+        </div>
+
+        <nav class="navigation">
+
+            <button
+                class="nav-item active"
+                data-section="dashboard"
+            >
+                <span>📊</span>
+                Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="scan"
+            >
+                <span>🔍</span>
+                Scan Files
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="backup"
+            >
+                <span>💾</span>
+                Secure Backup
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="ransomware"
+            >
+                <span>🚨</span>
+                Ransomware Check
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="backup-info"
+            >
+                <span>📁</span>
+                Backup Information
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="logs"
+            >
+                <span>📜</span>
+                Security Log
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="restore"
+            >
+                <span>♻️</span>
+                Restore Backup
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button
+                id="importFolderBtn"
+                class="import-button"
+            >
+                📂 Import Folder
+            </button>
+
+            <div class="security-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Ready</strong>
+                    <small>Protection active</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2 id="pageTitle">
+                    Dashboard
+                </h2>
+
+                <p id="pageSubtitle">
+                    Ransomware detection and backup system
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="folder-status">
+
+                    <span class="folder-icon">
+                        📂
+                    </span>
+
+                    <div>
+
+                        <span>Selected Folder</span>
+
+                        <strong id="selectedFolder">
+                            None
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ============================= -->
+        <!-- CONTENT -->
+        <!-- ============================= -->
+
+        <div class="content">
+
+
+            <!-- ========================= -->
+            <!-- DASHBOARD -->
+            <!-- ========================= -->
+
+            <section
+                id="dashboard"
+                class="page-section active"
+            >
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            SECURITY CENTER
+                        </span>
+
+                        <h1>
+                            Protect your files
+                            from ransomware
+                        </h1>
+
+                        <p>
+                            Select a folder, create a secure backup,
+                            and monitor your files for suspicious
+                            modifications.
+                        </p>
+
+                        <button
+                            id="dashboardImportBtn"
+                            class="primary-button"
+                        >
+                            📂 Select Folder
+                        </button>
+
+                    </div>
+
+                    <div class="shield-large">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            📄
+                        </div>
+
+                        <div>
+                            <span>Files Scanned</span>
+                            <strong id="dashboardFiles">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            💾
+                        </div>
+
+                        <div>
+                            <span>Backup Files</span>
+                            <strong id="dashboardBackup">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            ⚠️
+                        </div>
+
+                        <div>
+                            <span>Changed Files</span>
+                            <strong id="dashboardChanged">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            🔐
+                        </div>
+
+                        <div>
+                            <span>Protection</span>
+                            <strong>
+                                Active
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h3>Quick Actions</h3>
+                                <p>
+                                    Common protection operations
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="quick-actions">
+
+                            <button
+                                class="action-card"
+                                data-section-target="scan"
+                            >
+                                <span>🔍</span>
+                                <strong>Scan Files</strong>
+                                <small>
+                                    View files and sizes
+                                </small>
+                            </button>
+
+                            <button
+                                class="action-card"
+                                data-section-target="backup"
+                            >
+                                <span>💾</span>
+                                <strong>Create Backup</strong>
+                                <small>
+                                    Secure your files
+                                </small>
+                            </button>
+
+                            <button
+                                class="action-card"
+                                data-section-target="ransomware"
+                            >
+                                <span>🚨</span>
+                                <strong>Check Ransomware</strong>
+                                <small>
+                                    Detect suspicious changes
+                                </small>
+                            </button>
+
+                            <button
+                                class="action-card"
+                                data-section-target="restore"
+                            >
+                                <span>♻️</span>
+                                <strong>Restore</strong>
+                                <small>
+                                    Restore backup files
+                                </small>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h3>Protection Status</h3>
+                                <p>
+                                    Current system state
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="protection-list">
+
+                            <div class="protection-row">
+
+                                <span class="check">
+                                    ✓
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Folder Access
+                                    </strong>
+
+                                    <small id="folderAccessStatus">
+                                        No folder selected
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="protection-row">
+
+                                <span class="check">
+                                    ✓
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        SHA-256 Protection
+                                    </strong>
+
+                                    <small>
+                                        File integrity checking
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="protection-row">
+
+                                <span class="check">
+                                    ✓
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Backup System
+                                    </strong>
+
+                                    <small>
+                                        Backup and restore enabled
+                                    </small>
+                                </div>
+
+                            </div>
+
+
+                            <div class="protection-row">
+
+                                <span class="check">
+                                    ✓
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Security Logging
+                                    </strong>
+
+                                    <small>
+                                        Activity is recorded
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- SCAN -->
+            <!-- ========================= -->
+
+            <section
+                id="scan"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            FILE ANALYSIS
+                        </span>
+
+                        <h2>
+                            Scan Files
+                        </h2>
+
+                        <p>
+                            List files in the selected folder
+                            and calculate total size.
+                        </p>
+                    </div>
+
+                    <button
+                        id="scanBtn"
+                        class="primary-button"
+                    >
+                        🔍 Scan Files
+                    </button>
+
+                </div>
+
+
+                <div class="summary-cards">
+
+                    <div class="summary-card">
+                        <span>Total Files</span>
+                        <strong id="scanFileCount">
+                            0
+                        </strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Total Size</span>
+                        <strong id="scanTotalSize">
+                            0 B
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Files</h3>
+                            <p>
+                                Files found in the selected folder
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="scanResults"
+                        class="table-container"
+                    >
+
+                        <div class="empty-state">
+                            <span>📄</span>
+                            <p>
+                                Scan a folder to see files.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- BACKUP -->
+            <!-- ========================= -->
+
+            <section
+                id="backup"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            DATA PROTECTION
+                        </span>
+
+                        <h2>
+                            Create Secure Backup
+                        </h2>
+
+                        <p>
+                            Copy files and create SHA-256
+                            integrity records.
+                        </p>
+                    </div>
+
+                    <button
+                        id="createBackupBtn"
+                        class="primary-button"
+                    >
+                        💾 Create Backup
+                    </button>
+
+                </div>
+
+
+                <div class="info-banner">
+
+                    <span>🔐</span>
+
+                    <div>
+                        <strong>
+                            How secure backup works
+                        </strong>
+
+                        <p>
+                            Files are copied into a Backup
+                            folder and their SHA-256 hashes
+                            are stored in manifest.txt.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>
+                                Backup Progress
+                            </h3>
+
+                            <p id="backupStatus">
+                                Waiting for backup
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="backupResults"
+                        class="operation-results"
+                    >
+
+                        <div class="empty-state">
+                            <span>💾</span>
+                            <p>
+                                No backup operation performed.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- RANSOMWARE -->
+            <!-- ========================= -->
+
+            <section
+                id="ransomware"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            THREAT DETECTION
+                        </span>
+
+                        <h2>
+                            Ransomware Check
+                        </h2>
+
+                        <p>
+                            Compare current files with
+                            the backup manifest.
+                        </p>
+                    </div>
+
+                    <button
+                        id="ransomwareBtn"
+                        class="danger-button"
+                    >
+                        🚨 Check for Ransomware
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="riskBanner"
+                    class="risk-banner low"
+                >
+
+                    <div class="risk-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            CURRENT RISK LEVEL
+                        </span>
+
+                        <strong id="riskLevel">
+                            LOW
+                        </strong>
+
+                        <p id="riskMessage">
+                            No scan has been performed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="threat-stats">
+
+                    <div class="threat-card">
+
+                        <span class="threat-icon red">
+                            ⚠️
+                        </span>
+
+                        <div>
+                            <span>
+                                Suspicious
+                            </span>
+
+                            <strong id="suspiciousCount">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="threat-card">
+
+                        <span class="threat-icon orange">
+                            ✏️
+                        </span>
+
+                        <div>
+                            <span>
+                                Changed
+                            </span>
+
+                            <strong id="changedCount">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="threat-card">
+
+                        <span class="threat-icon blue">
+                            ➕
+                        </span>
+
+                        <div>
+                            <span>
+                                New
+                            </span>
+
+                            <strong id="newCount">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>
+                                Detection Results
+                            </h3>
+
+                            <p>
+                                File integrity analysis
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="ransomwareResults"
+                        class="table-container"
+                    >
+
+                        <div class="empty-state">
+                            <span>🛡️</span>
+                            <p>
+                                Run a ransomware check
+                                to see results.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- BACKUP INFORMATION -->
+            <!-- ========================= -->
+
+            <section
+                id="backup-info"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            BACKUP MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Backup Information
+                        </h2>
+
+                        <p>
+                            View files stored in your backup.
+                        </p>
+                    </div>
+
+                    <button
+                        id="refreshBackupBtn"
+                        class="secondary-button"
+                    >
+                        🔄 Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="backup-info-grid">
+
+                    <div class="info-card">
+
+                        <span>📁</span>
+
+                        <div>
+                            <small>
+                                Backup Location
+                            </small>
+
+                            <strong id="backupLocation">
+                                Not available
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <span>📜</span>
+
+                        <div>
+                            <small>
+                                Manifest
+                            </small>
+
+                            <strong id="manifestLocation">
+                                Not available
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>
+                                Backup Files
+                            </h3>
+
+                            <p>
+                                Files currently stored in Backup
+                            </p>
+                        </div>
+
+                        <strong id="backupFileCount">
+                            0 files
+                        </strong>
+
+                    </div>
+
+                    <div
+                        id="backupFileList"
+                        class="table-container"
+                    >
+
+                        <div class="empty-state">
+                            <span>💾</span>
+                            <p>
+                                No backup information available.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- LOGS -->
+            <!-- ========================= -->
+
+            <section
+                id="logs"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            SECURITY MONITORING
+                        </span>
+
+                        <h2>
+                            Security Log
+                        </h2>
+
+                        <p>
+                            View recorded protection activity.
+                        </p>
+                    </div>
+
+                    <button
+                        id="refreshLogsBtn"
+                        class="secondary-button"
+                    >
+                        🔄 Refresh Log
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div
+                        id="logResults"
+                        class="log-container"
+                    >
+
+                        <div class="empty-state">
+                            <span>📜</span>
+                            <p>
+                                No security log available.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- RESTORE -->
+            <!-- ========================= -->
+
+            <section
+                id="restore"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">
+                            RECOVERY
+                        </span>
+
+                        <h2>
+                            Restore Backup
+                        </h2>
+
+                        <p>
+                            Restore files from the Backup folder.
+                        </p>
+                    </div>
+
+                    <button
+                        id="restoreBtn"
+                        class="primary-button"
+                    >
+                        ♻️ Restore Backup
+                    </button>
+
+                </div>
+
+
+                <div class="warning-banner">
+
+                    <span>⚠️</span>
+
+                    <div>
+
+                        <strong>
+                            Restore warning
+                        </strong>
+
+                        <p>
+                            Restoring will replace files with
+                            the same names in the selected folder.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>
+                                Restore Results
+                            </h3>
+
+                            <p id="restoreStatus">
+                                Waiting for restore
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="restoreResults"
+                        class="operation-results"
+                    >
+
+                        <div class="empty-state">
+                            <span>♻️</span>
+                            <p>
+                                No restore operation performed.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- TOAST -->
+<!-- ============================= -->
+
+<div
+    id="toast"
+    class="toast"
+>
+    <span id="toastIcon">✓</span>
+
+    <div>
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+        <p id="toastMessage">
+            Operation completed.
+        </p>
+    </div>
+
+</div>
+
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
